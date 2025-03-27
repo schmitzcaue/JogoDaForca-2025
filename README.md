@@ -3,7 +3,7 @@
 
 # JogoDeAdvinhação
 
-https://imgur.com/I7YBsT0
+
 
 ## Introdução
 O melhor jogo da forca, ACADEMIA DO PROGRAMADOR
