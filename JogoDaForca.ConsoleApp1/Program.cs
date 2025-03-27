@@ -5,6 +5,7 @@
         //Versão 1: Estrutura básica e entrada do usuário 
         // Versão 2: Exibir palavra oculta com traços 
         //Versão 3: Verificação do input, ou entrada de dados
+        //acessar o array no indice 0
         static void Main(string[] args)
         {
             while (true)
@@ -18,6 +19,7 @@
                     //acessar o array no indice 0 ou encontrado // quando se quer passar valor para a caractere// [caractere] = '_';//
                     letrasEncontradas[caractere] = '_';
                 }
+
                 int quantidadeErros = 0;
                 bool jgadorEnforcou = false;
                 bool jogadorAcertou = false;
@@ -32,9 +34,13 @@
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine("Palavra secreta: " + dicaDaPalavra);
                     Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("quantidade de erros: " + quantidadeErros);
+                    Console.WriteLine("-------------------------------------");
 
                     Console.Write("Digite uma letra: ");
                     char chute = Console.ReadLine()[0]; // apena um caracter do q o usuario digita
+
+                    bool letraFoiEncontrada = false;
 
                     for ( int contador = 0; contador < palavraSecreta.Length; contador++ )
                     {
@@ -43,14 +49,35 @@
                         if(chute == letraAtual)
                         {
                             letrasEncontradas[contador] = letraAtual;
+                            letraFoiEncontrada = true;
                         }
                     }
 
-                    Console.WriteLine(chute);
-                    Console.ReadLine();
+                    if (letraFoiEncontrada == false)
+                        quantidadeErros++;
+
+                    dicaDaPalavra = String.Join("", letrasEncontradas);
+
+                    jogadorAcertou = dicaDaPalavra == palavraSecreta; //true ou false
+                    // o jogador podera cometer 5 erros antes de perder
+                    jgadorEnforcou = quantidadeErros > 5;
+
+                    if (jogadorAcertou)
+                    {
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine("Voce acertou a apalavra secreta! Era: " + palavraSecreta);
+                        Console.WriteLine("-------------------------------------");
+                    }
+                    else if (jgadorEnforcou)
+                    {
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine("Que azar, tente novamente! A palavra era: " + palavraSecreta);
+                        Console.WriteLine("-------------------------------------");
+                    }
+
                 } while (jogadorAcertou == false && jgadorEnforcou == false); // (|| = ou) && so vai ser verdadeiro quando as duas forem verdadeiras
 
-             
+                Console.ReadLine();
             }
         }
            
