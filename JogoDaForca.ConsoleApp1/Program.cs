@@ -1,4 +1,6 @@
-﻿namespace JogoDaForca.ConsoleApp1
+﻿using System;
+
+namespace JogoDaForca.ConsoleApp1
 {
     internal class Program
     {
@@ -7,11 +9,52 @@
         //Versão 3: Verificação do input, ou entrada de dados
         //acessar o array no indice 0
         //Versão 4: Exibir boneco da forca 
+        //Versão 5: Escolher uma palavra aleatória
+        //Armazenar e exibir letras ja digitadas
         static void Main(string[] args)
         {
+            string[] frutas = [
+             
+            "ABACATE",
+            "ABACAXI",
+            "ACEROLA",
+            "ACAI",
+            "ARACA",
+            "BACABA",
+            "BACURI",
+            "BANANA",
+            "CAJA",
+            "CAJU",
+            "CARAMBOLA",
+            "CUPUACU",
+            "GRAVIOLA",
+            "GOIABA",
+            "JABUTICABA",
+            "JENIPAPO",
+            "MACA",
+            "MANGABA",
+            "MANGA",
+            "MARACUJA",
+            "MURICI",
+            "PEQUI",
+            "PITANGA",
+            "PITAYA",
+            "SAPOTI",
+            "TANGERINA",
+            "UMBU",
+            "UVA",
+            "UVAIA"
+        ];
+
             while (true)
             {
-                string palavraSecreta = "MELANCIA";
+
+                Random geradorDeNumeros = new Random();
+                // valore3s aleatorios
+                 int indicePalvraEscolhida = geradorDeNumeros.Next(frutas.Length);
+                int[] memoria = new int[5];
+
+                string palavraSecreta = frutas[indicePalvraEscolhida];
 
                 char[] letrasEncontradas = new char[palavraSecreta.Length]; 
 
@@ -25,8 +68,15 @@
                 bool jgadorEnforcou = false;
                 bool jogadorAcertou = false;
 
-                do
-                {
+               
+
+
+
+
+
+                //////////////
+                    do
+                    {
                     string dicaDaPalavra = String.Join(" ", letrasEncontradas); //join== juntar caractere separadas ou strings // separador das caracteres unicas= String.Join(" ",  letrasEncontradas);
 
                     Console.Clear();
@@ -119,7 +169,23 @@
                     Console.Write("Digite uma letra: ");
                     char chute = Console.ReadLine()[0]; // apena um caracter do q o usuario digita
 
+
+                    ////////////////////////// 
+                    int memoria = 0;
+                    int[] memoria == chute ;
+                    int numeroDigitado = 0;
+
+                    if (memoria.Contains(numeroDigitado))
+                    {
+                        Console.WriteLine("-------------------------------------------");
+                        Console.WriteLine("Voce já usou essa tentativa!");
+                        Console.WriteLine("-------------------------------------------");
+                    }
+
+
+                    //////////////////
                     bool letraFoiEncontrada = false;
+
 
                     for ( int contador = 0; contador < palavraSecreta.Length; contador++ )
                     {
@@ -170,6 +236,8 @@
                     }
 
                 } while (jogadorAcertou == false && jgadorEnforcou == false); // (|| = ou) && so vai ser verdadeiro quando as duas forem verdadeiras
+
+               
 
                 Console.ReadLine();
             }
