@@ -1,20 +1,24 @@
 ﻿using System;
+#region  Versões
+//Versão 1: Estrutura básica e entrada do usuário 
+// Versão 2: Exibir palavra oculta com traços 
+//Versão 3: Verificação do input, ou entrada de dados
+//acessar o array no indice 0
+//Versão 4: Exibir boneco da forca 
+//Versão 5: Escolher uma palavra aleatória
+//Armazenar e exibir letras ja digitadas 
 
+#endregion
 namespace JogoDaForca.ConsoleApp1
 {
     internal class Program
     {
-        //Versão 1: Estrutura básica e entrada do usuário 
-        // Versão 2: Exibir palavra oculta com traços 
-        //Versão 3: Verificação do input, ou entrada de dados
-        //acessar o array no indice 0
-        //Versão 4: Exibir boneco da forca 
-        //Versão 5: Escolher uma palavra aleatória
-        //Armazenar e exibir letras ja digitadas
+       
         static void Main(string[] args)
         {
+            #region frutas
             string[] frutas = [
-             
+
             "ABACATE",
             "ABACAXI",
             "ACEROLA",
@@ -45,7 +49,7 @@ namespace JogoDaForca.ConsoleApp1
             "UVA",
             "UVAIA"
         ];
-
+            #endregion
             while (true)
             {
 
@@ -56,34 +60,47 @@ namespace JogoDaForca.ConsoleApp1
 
                 string palavraSecreta = frutas[indicePalvraEscolhida];
 
-                char[] letrasEncontradas = new char[palavraSecreta.Length]; 
+                char[] letrasEncontradas = new char[palavraSecreta.Length]; // new char = banco de dados
+                char[] letrasErradas = new char[5];
+                int contadorLetrasErradas = 0;
 
-                for(int caractere = 0; caractere < letrasEncontradas.Length; caractere++ )
+                for (int caractere = 0; caractere < letrasEncontradas.Length; caractere++ )
                 {
                     //acessar o array no indice 0 ou encontrado // quando se quer passar valor para a caractere// [caractere] = '_';//
                     letrasEncontradas[caractere] = '_';
                 }
 
+                for (int caractere = 0; caractere < letrasErradas.Length; caractere++)
+                {
+                    //acessar o array no indice 0 ou encontrado // quando se quer passar valor para a caractere// [caractere] = '_';//
+                    letrasErradas[caractere] = '_';
+                }
+
                 int quantidadeErros = 0;
                 bool jgadorEnforcou = false;
                 bool jogadorAcertou = false;
-
-               
-
-
-
+                //declarar  uma variavel fora do laco
+                //declarar uma nova variável
+                //string letrasErradas = "";
 
 
-                //////////////
-                    do
-                    {
+
+
+
+
+                do
+                {
                     string dicaDaPalavra = String.Join(" ", letrasEncontradas); //join== juntar caractere separadas ou strings // separador das caracteres unicas= String.Join(" ",  letrasEncontradas);
+                    string dicaLetrasErradas = String.Join(" ", letrasErradas);
 
+                    #region escreve o cabeçalho do jogo
                     Console.Clear();
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine("Jogo da forca");
                     Console.WriteLine("-------------------------------------");
+                    #endregion
 
+                    #region código que desenha a forca
                     if (quantidadeErros == 0)
                     {
                         Console.WriteLine(" ___________        ");
@@ -160,30 +177,26 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
+ #endregion
+
+                    #region código que apresenta a palavra secreta e qtd de erros
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine("Palavra secreta: " + dicaDaPalavra);
                     Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("Letras erradas: " + dicaLetrasErradas);
+                    Console.WriteLine("-------------------------------------");
                     Console.WriteLine("quantidade de erros: " + quantidadeErros);
                     Console.WriteLine("-------------------------------------");
+                    #endregion
+
+                    #region código que recebe o que o usuário informou (chute do usuário)
 
                     Console.Write("Digite uma letra: ");
                     char chute = Console.ReadLine()[0]; // apena um caracter do q o usuario digita
 
+                    #endregion
 
-                    ////////////////////////// 
-                    int memoria = 0;
-                    int[] memoria == chute ;
-                    int numeroDigitado = 0;
-
-                    if (memoria.Contains(numeroDigitado))
-                    {
-                        Console.WriteLine("-------------------------------------------");
-                        Console.WriteLine("Voce já usou essa tentativa!");
-                        Console.WriteLine("-------------------------------------------");
-                    }
-
-
-                    //////////////////
+                    #region código que verifica se o usuário informou uma letra existente na palavra secreta
                     bool letraFoiEncontrada = false;
 
 
@@ -197,11 +210,22 @@ namespace JogoDaForca.ConsoleApp1
                             letraFoiEncontrada = true;
                         }
                     }
+                    #endregion
+
 
                     if (letraFoiEncontrada == false)
+                    {
                         quantidadeErros++;
+                        //letrasErradas += chute + ", ";
+                        letrasErradas[contadorLetrasErradas] = chute;
+                        contadorLetrasErradas++;
+                    }
 
-                    dicaDaPalavra = String.Join("", letrasEncontradas);
+                    //Console.WriteLine("Letras erradas: " + string.Join(" ", letrasErradas));
+                    Console.ReadLine();
+
+                    #region outros codigoos
+                    dicaDaPalavra = String.Join("",letrasEncontradas);
 
                     jogadorAcertou = dicaDaPalavra == palavraSecreta; //true ou false
                     // o jogador podera cometer 5 erros antes de perder
@@ -234,7 +258,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine("Que azar, tente novamente! A palavra era: " + palavraSecreta);
                         Console.WriteLine("-------------------------------------");
                     }
-
+                    #endregion
                 } while (jogadorAcertou == false && jgadorEnforcou == false); // (|| = ou) && so vai ser verdadeiro quando as duas forem verdadeiras
 
                
