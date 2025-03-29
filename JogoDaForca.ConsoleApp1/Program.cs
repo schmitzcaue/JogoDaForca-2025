@@ -13,13 +13,15 @@ namespace JogoDaForca.ConsoleApp1
 {
     internal class Program
     {
-       
+
         static void Main(string[] args)
         {
             #region frutas
-            string[] frutas = [
+           
+            
+                string[] frutas = [
 
-            "ABACATE",
+                "ABACATE",
             "ABACAXI",
             "ACEROLA",
             "ACAI",
@@ -48,14 +50,89 @@ namespace JogoDaForca.ConsoleApp1
             "UMBU",
             "UVA",
             "UVAIA"
-        ];
+            ];
+            
             #endregion
+
+            #region animais
+            string[] animais = [
+
+                "CACHORRO",
+                "GATO",
+                "LEÃO",
+                "TIGRE",
+                "ELEFANTE",
+                "URSO",
+                "ÁGUIA",
+                "CAVALO",
+                "MACACO",
+                "COELHO",
+                "ZEBRA",
+                "HIPOPÓTAMO",
+                "CROCODILO",
+                "JIRAFA",
+                "LAGARTO",
+                "PANDA",
+                "LOBO",
+                "RAPOSA",
+                "PAVÃO",
+                "SARDINHA",
+                "FALCÃO",
+                "ESMERALDA",
+                "BÚFALO",
+                "CAMELO",
+                "PINGUIM",
+                "JACARÉ",
+                "GIRAFA",
+                "PATO",
+                "MORCEGO",
+                "CAMELO",
+                ];
+            #endregion
+
+            #region paises
+            string[] paises = [
+
+                "BRASIL",
+                "EUA",
+                "ARGENTINA",
+                "CANADÁ",
+                "AUSTRÁLIA",
+                "ÁFRICA DO SUL",
+                "ÍNDIA",
+                "JAPÃO",
+                "ALEMANHA",
+                "FRANÇA",
+                "REINO UNIDO",
+                "ESPANHA",
+                "ITÁLIA",
+                "MÉXICO",
+                "RÚSSIA",
+                "CHINA",
+                "COLÔMBIA",
+                "PAQUISTÃO",
+                "IRÃ",
+                "SAUDI ARÁBIA",
+                "EGITO",
+                "PAÍSES BAIXOS",
+                "SUÍÇA",
+                "SUECIA",
+                "POLÔNIA",
+                "GREVE",
+                "ISLÂNDIA",
+                "BÉLGICA",
+                "SUÍÇA",
+                "ARGÉLIA",
+                ];
+            #endregion
+
+
             while (true)
             {
 
                 Random geradorDeNumeros = new Random();
                 // valore3s aleatorios
-                 int indicePalvraEscolhida = geradorDeNumeros.Next(frutas.Length);
+                int indicePalvraEscolhida = geradorDeNumeros.Next(frutas.Length);
                 int[] memoria = new int[5];
 
                 string palavraSecreta = frutas[indicePalvraEscolhida];
@@ -64,7 +141,7 @@ namespace JogoDaForca.ConsoleApp1
                 char[] letrasErradas = new char[5];
                 int contadorLetrasErradas = 0;
 
-                for (int caractere = 0; caractere < letrasEncontradas.Length; caractere++ )
+                for (int caractere = 0; caractere < letrasEncontradas.Length; caractere++)
                 {
                     //acessar o array no indice 0 ou encontrado // quando se quer passar valor para a caractere// [caractere] = '_';//
                     letrasEncontradas[caractere] = '_';
@@ -98,6 +175,16 @@ namespace JogoDaForca.ConsoleApp1
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine("Jogo da forca");
                     Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("1 - frutas");
+                    Console.WriteLine("2 - animais");
+                    Console.WriteLine("3 - paises");
+                    Console.WriteLine("-------------------------------------");
+                    Console.WriteLine("Digite a categoria escolhida: ");
+                    string opcao = Console.ReadLine();
+                    Console.Write("categoria escolhida ");
+                    Console.WriteLine("-------------------------------------");
+
+
                     #endregion
 
                     #region código que desenha a forca
@@ -126,7 +213,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
-                    
+
                     else if (quantidadeErros == 2)
                     {
                         Console.WriteLine(" ___________        ");
@@ -139,7 +226,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
-                    
+
                     else if (quantidadeErros == 3)
                     {
                         Console.WriteLine(" ___________        ");
@@ -152,7 +239,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
-                    
+
                     else if (quantidadeErros == 4)
                     {
                         Console.WriteLine(" ___________        ");
@@ -165,7 +252,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
-                     else if (quantidadeErros == 5)
+                    else if (quantidadeErros == 5)
                     {
                         Console.WriteLine(" ___________        ");
                         Console.WriteLine(" |/        |        ");
@@ -177,7 +264,7 @@ namespace JogoDaForca.ConsoleApp1
                         Console.WriteLine(" |                  ");
                         Console.WriteLine("_|____              ");
                     }
- #endregion
+                    #endregion
 
                     #region código que apresenta a palavra secreta e qtd de erros
                     Console.WriteLine("-------------------------------------");
@@ -191,7 +278,8 @@ namespace JogoDaForca.ConsoleApp1
 
                     #region código que recebe o que o usuário informou (chute do usuário)
 
-                    Console.Write("Digite uma letra: ");
+                    Console.WriteLine("Digite uma letra: ");
+                    Console.WriteLine("-------------------------------------");
                     char chute = Console.ReadLine()[0]; // apena um caracter do q o usuario digita
 
                     #endregion
@@ -200,11 +288,11 @@ namespace JogoDaForca.ConsoleApp1
                     bool letraFoiEncontrada = false;
 
 
-                    for ( int contador = 0; contador < palavraSecreta.Length; contador++ )
+                    for (int contador = 0; contador < palavraSecreta.Length; contador++)
                     {
                         char letraAtual = palavraSecreta[contador];
 
-                        if(chute == letraAtual)
+                        if (chute == letraAtual)
                         {
                             letrasEncontradas[contador] = letraAtual;
                             letraFoiEncontrada = true;
@@ -225,7 +313,7 @@ namespace JogoDaForca.ConsoleApp1
                     Console.ReadLine();
 
                     #region outros codigoos
-                    dicaDaPalavra = String.Join("",letrasEncontradas);
+                    dicaDaPalavra = String.Join("", letrasEncontradas);
 
                     jogadorAcertou = dicaDaPalavra == palavraSecreta; //true ou false
                     // o jogador podera cometer 5 erros antes de perder
@@ -239,21 +327,21 @@ namespace JogoDaForca.ConsoleApp1
                     }
                     else if (jgadorEnforcou)
                     {
-                            Console.Clear();
-                            Console.WriteLine("-------------------------------------");
-                            Console.WriteLine("Jogo da forca");
-                            Console.WriteLine("-------------------------------------");
-                            Console.WriteLine("-------------------------------------");
-                            Console.WriteLine(" ___________        ");
-                            Console.WriteLine(" |/        |        ");
-                            Console.WriteLine(" |         o        ");
-                            Console.WriteLine(" |        /x\\      ");
-                            Console.WriteLine(" |         x        ");
-                            Console.WriteLine(" |        / \\      ");
-                            Console.WriteLine(" |        ---       ");
-                            Console.WriteLine(" |                  ");
-                            Console.WriteLine("_|____              ");
-                        
+                        Console.Clear();
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine("Jogo da forca");
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine("-------------------------------------");
+                        Console.WriteLine(" ___________        ");
+                        Console.WriteLine(" |/        |        ");
+                        Console.WriteLine(" |         o        ");
+                        Console.WriteLine(" |        /x\\      ");
+                        Console.WriteLine(" |         x        ");
+                        Console.WriteLine(" |        / \\      ");
+                        Console.WriteLine(" |        ---       ");
+                        Console.WriteLine(" |                  ");
+                        Console.WriteLine("_|____              ");
+
                         Console.WriteLine("-------------------------------------");
                         Console.WriteLine("Que azar, tente novamente! A palavra era: " + palavraSecreta);
                         Console.WriteLine("-------------------------------------");
@@ -261,11 +349,11 @@ namespace JogoDaForca.ConsoleApp1
                     #endregion
                 } while (jogadorAcertou == false && jgadorEnforcou == false); // (|| = ou) && so vai ser verdadeiro quando as duas forem verdadeiras
 
-               
+
 
                 Console.ReadLine();
             }
         }
-           
+
     }
 }
