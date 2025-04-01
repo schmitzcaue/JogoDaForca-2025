@@ -6,6 +6,7 @@ namespace jogoDaForca.ConsoleApp
     {
 
         static void cabecalhoJogo(int qtdErros, int totalTentativas, string historicoChutesJoin, char[] letrasEncontradas, string categoria)
+        #region cabeçalho do jogo
         {
             string cabecaDoBoneco = qtdErros >= 1 ? " O " : " ";
             string tronco = qtdErros >= 2 ? "x" : " ";
@@ -34,7 +35,9 @@ namespace jogoDaForca.ConsoleApp
             Console.WriteLine($"Categoria: {categoria}");
             Console.WriteLine("----------------------------------------------");
         }
+        #endregion
 
+        #region eswcolher categoria
         static char escolherCategoriaPalavra()
         {
             while (true)
@@ -113,7 +116,9 @@ namespace jogoDaForca.ConsoleApp
                     indiceAleatorio = geradorDePalavras.Next(paises.Length);
                     palavraSecreta = paises[indiceAleatorio];
                 }
+                #endregion
 
+        #region tentativas erradas
                 int totalTentativas = 5;
 
                 string[] chutesRealizados = new string[100];
@@ -129,10 +134,11 @@ namespace jogoDaForca.ConsoleApp
                 int qtdErros = 0;
                 bool jogadorEnforcou = false;
                 bool jogadorAcertou = false;
-
+                #endregion
 
                 do
                 {
+        #region verificação de letras iguais
                     string historicoChutesJoin = string.Join(", ", chutesRealizados.Where(n => !string.IsNullOrEmpty(n)));
                     cabecalhoJogo(qtdErros, totalTentativas, historicoChutesJoin, letrasEncontradas, categoria);
 
@@ -158,8 +164,9 @@ namespace jogoDaForca.ConsoleApp
                             Console.Write("Digite [Enter] para continuar:");
                             Console.ReadLine();
                         }
+                        #endregion
 
-
+        #region comparação final certo ou errado e contabilidade de tentativas
                         chutesRealizados[contadorChutes++] = chute.ToString();
 
                         bool letraFoiEncontrada = false;
@@ -229,6 +236,7 @@ namespace jogoDaForca.ConsoleApp
 
                 if (opcaoContinuar != "S")
                     break;
+#endregion
 
             }
         }
